@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="oauth.user_provider.class">Oauth\SsoBundle\Security\Core\User\OAuthUserProvider</parameter>
+        <parameter key="oauth.sso_listener.class">Oauth\SsoBundle\Listener\SsoListener</parameter>
+        <parameter key="oauth.sso_logout_success.class">Oauth\SsoBundle\Handler\LogoutSuccessHandler</parameter>
+    </parameters>
+    <services>
+        <service id="oauth.user_provider" class="%oauth.user_provider.class%">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+        <service id="oauth.sso_logout_success" class="%oauth.sso_logout_success.class%">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+        <service id="oauth.sso_listener" class="%oauth.sso_listener.class%">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+            <tag name="kernel.event_listener" event="kernel.response" method="onKernelResponse" />
+        </service>
+    </services>
+</container>

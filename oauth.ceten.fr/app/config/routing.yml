@@ -1,0 +1,20 @@
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /signin/redirect
+
+google_oauth:
+    pattern: /signin/google
+
+# signout user
+signout:
+    pattern: /signout
+
+oauth_sso:
+    resource: "@OauthSsoBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+#oauth2_server:
+#    resource: "@OAuth2ServerBundle/Controller/"
+#    type:     annotation
+#    prefix:   /

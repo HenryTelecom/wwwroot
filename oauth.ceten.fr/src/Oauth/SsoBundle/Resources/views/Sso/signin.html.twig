@@ -1,0 +1,17 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Connexion {{ parent() }}{% endblock %}
+
+{% block content %}
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <a href="{{ path('hwi_oauth_service_redirect', {service: 'google'}) }}" class="button button-google">
+                                Connexion avec Telecomnancy.net
+                            </a>
+                        </div>
+
+                        {# <div class="col-xs-12 col-md-6">
+
+                        </div> #}
+                    </div>
+{% endblock %}

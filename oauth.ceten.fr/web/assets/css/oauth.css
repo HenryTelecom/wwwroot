@@ -1,0 +1,35 @@
+body {
+    padding-top: 80px;
+    background: #efefef;
+}
+
+.logo {
+    display: block;
+    width: 200px;
+    margin: auto;
+}
+
+header.main-header {
+    margin-bottom: 50px;
+}
+
+
+.button {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.button, .button:hover {
+    text-decoration: none;
+}
+
+.button.button-google {
+    background-color: #6c2466;
+    color: #ffffff;
+}
+
+.button.button-google:hover {
+    background-color: #581853;
+}

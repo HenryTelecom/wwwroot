@@ -1,0 +1,116 @@
+/******************************
+ * 
+ * CETEN services header CSS
+ * 
+ * @author Jonathan ARNAULT
+ * @copyright Cercles des Élèves de TELECOM Nancy <bde@telecomnancy.net>
+ * @license MIT
+ * 
+ *****************************/
+
+.ceten-services {
+    position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+    z-index: 9999;
+}
+
+.ceten-services .navbar-nav {
+    margin: 0;
+}
+
+.ceten-services .navbar-default,
+.ceten-services .navbar-collapse {
+    background-color: #222222;
+    box-shadow: none;
+    border: 0;
+    padding: 0;
+}
+
+.ceten-services .navbar-default {
+    height: 30px;
+    min-height: 30px;
+    border-bottom: 0;
+
+    /* Reset navbar */
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.ceten-services .navbar-default .navbar-nav > li > a {
+    padding: 0 10px 0 10px;
+    color: #ffffff;
+    line-height: 30px;
+}
+
+.ceten-services .navbar-default .navbar-nav > li > a:hover {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.ceten-services .navbar-default .navbar-nav > li > a:focus,
+.ceten-services .navbar-default .navbar-nav > li > a:active,
+.ceten-services .nav .open>a, 
+.ceten-services .nav .open>a:hover, 
+.ceten-services .nav .open>a:focus,
+.ceten-services .nav .open>a:active {
+    background: none;
+    color: #ffffff;
+}
+
+.ceten-services .dropdown-menu > li > a:hover,
+.ceten-services .dropdown-menu > li > a:active,
+.ceten-services .dropdown-menu > li > a:focus {
+    background-color: #222222;
+    color: #ffffff;
+}
+
+.ceten-services .ceten-network-icon {
+    margin-right: 10px;
+}
+
+.ceten-services .navbar > .container .navbar-brand, 
+.ceten-services .navbar > .container-fluid .navbar-brand {
+    margin-left: 0;
+    height: 30px;
+    font-size: inherit;
+}
+
+.ceten-services .navbar-toggle {
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+    padding: 8px;
+}
+
+.ceten-services .navbar-toggle:hover,
+.ceten-services .navbar-toggle:active,
+.ceten-services .navbar-toggle:focus {
+    background-color: #333333;
+}
+
+.ceten-services .navbar-default .navbar-toggle .icon-bar {
+    background-color: #ffffff;
+}
+
+.ceten-services .navbar-nav.navbar-right:last-child {
+    margin-right: 0;
+}
+
+@media (max-width: 767px) {
+    .ceten-services .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        background: #222222;
+        color: #ffffff;
+    }
+
+    .ceten-services .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
+        background: #333333;
+    }
+}
+
+.ceten-services .navbar-brand img {
+    height: auto;
+}

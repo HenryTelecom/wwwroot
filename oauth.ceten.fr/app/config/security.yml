@@ -1,0 +1,51 @@
+# you can read more about security in the related section of the documentation
+# http://symfony.com/doc/current/book/security.html
+hwi_oauth:
+    firewall_name: secured_area
+
+    resource_owners:
+        google:
+            type:                google
+            client_id:           '%oauth.google.id%'
+            client_secret:       '%oauth.google.secret%'
+            scope:               openid email profile
+
+security:
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        oauth:
+            id: oauth.user_provider
+
+    firewalls:
+        secured_area:
+            pattern:    ^/
+
+            logout:
+                path:   /signout
+                success_handler: oauth.sso_logout_success
+
+            anonymous: ~
+            #form_login:
+            #    check_path: _demo_security_check
+            #    login_path: _demo_login
+
+            oauth:
+                resource_owners:
+                    google:             /signin/google
+                login_path:        /signin
+                use_forward:       false
+                failure_path:      /signin
+
+                oauth_user_provider:
+                    service: oauth.user_provider
+
+            remember_me:
+                key:      "%secret%"
+                lifetime: 31536000
+                path:     /
+                domain:   ~
+                always_remember_me: true
+
+    access_control:
+        - { path: ^/signout, roles: ROLE_USER }
+        - { path: ^/signin, roles: IS_AUTHENTICATED_ANONYMOUSLY }

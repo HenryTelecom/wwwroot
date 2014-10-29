@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width"/>
+
+        <title>{% block title %}| Boutique du Cercles des Élèves de TELECOM Nancy{% endblock %}</title>
+
+        <link rel="icon" type="image/x-icon" href="{{ cdn('/assets/images/logo/ceten-icon-30x30.png') }}">
+
+        <link rel="stylesheet" href="{{ cdn('/assets/css/reset.css') }}">
+        <link rel="stylesheet" href="{{ cdn('/assets/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ cdn('/assets/css/ceten-services.css') }}">
+        {% block css %}{% endblock %}
+
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="{{ cdn('/assets/js/bootstrap.min.js') }}"></script>
+        {% block js %}{% endblock %}
+    </head>
+    <body>
+        <header class="main-header">
+{% include 'CetenCetenBundle:Utils:services.html.twig' %}
+        </header>
+        <div class="container-fluid">
+{% block content %}{% endblock %}
+            </div>
+        </div>
+    </body>
+</html>

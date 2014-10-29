@@ -1,0 +1,17 @@
+# you can read more about security in the related section of the documentation
+# http://symfony.com/doc/current/book/security.html
+security:
+    providers:
+        users:
+            id: ceten.sso_user_provider
+
+    firewalls:
+        secured_area:
+            pattern:    ^/
+            stateless: true
+            simple_preauth:
+                authenticator: ceten.sso_authenticator
+
+    access_control:
+        #- { path: ^/signout, roles: ROLE_USER }
+        #- { path: ^/signin, roles: IS_AUTHENTICATED_ANONYMOUSLY }

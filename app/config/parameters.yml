@@ -1,0 +1,7 @@
+# This file is auto-generated during the composer install
+parameters:
+    locale: fr
+    secret: 60edb965796af08dfe76eaf3cc39901a
+    debug_toolbar: true
+    debug_redirects: false
+    use_assetic_controller: true

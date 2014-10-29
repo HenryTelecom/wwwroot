@@ -1,0 +1,29 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="admin.shop.tag.class">Dashboard\ShopBundle\Admin\TagAdmin</parameter>
+        <parameter key="admin.shop.product.class">Dashboard\ShopBundle\Admin\ProductAdmin</parameter>
+    </parameters>
+    <services>
+        <service id="admin.shop.tag" class="%admin.shop.tag.class%">
+            <tag name="sonata.admin" manager_type="orm" group="Shop" label="Tags" />
+            <argument />
+            <argument>Ceten\CetenBundle\Entity\Tag</argument>
+            <argument />
+            <call method="setTranslationDomain">
+                <argument>CetenCetenBundle</argument>
+            </call>
+        </service>
+
+        <service id="admin.shop.product" class="%admin.shop.product.class%">
+            <tag name="sonata.admin" manager_type="orm" group="Shop" label="Products" />
+            <argument />
+            <argument>Ceten\CetenBundle\Entity\Product</argument>
+            <argument />
+            <call method="setTranslationDomain">
+                <argument>CetenCetenBundle</argument>
+            </call>
+        </service>
+    </services>
+</container>

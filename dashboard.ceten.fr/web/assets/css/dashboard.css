@@ -1,0 +1,32 @@
+body.fixed > .header {
+    top: 30px;
+}
+
+body.fixed .wrapper {
+    margin-top: 80px;
+}
+
+.left-side {
+    top: 80px;
+}
+
+.logo img {
+    max-width: 200px;
+}
+
+.skin-black .ceten-services .navbar .nav > li > a:hover, 
+.skin-black .ceten-services .navbar .nav > li > a:active, 
+.skin-black .ceten-services .navbar .nav > li > a:focus, 
+.skin-black .ceten-services .navbar .nav .open > a, 
+.skin-black .ceten-services .navbar .nav .open > a:hover, 
+.skin-black .ceten-services .navbar .nav .open > a:focus {
+    background: none;
+    color: #ffffff;
+}
+
+.skin-black .ceten-services .dropdown-menu > li > a:hover,
+.skin-black .ceten-services .dropdown-menu > li > a:active,
+.skin-black .ceten-services .dropdown-menu > li > a:focus {
+    background-color: #222222;
+    color: #ffffff;
+}
