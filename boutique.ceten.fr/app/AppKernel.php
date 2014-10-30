@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Ceten\CetenBundle\CetenCetenBundle(),
             new Ceten\SsoBundle\CetenSsoBundle(),
             new Shop\ShopBundle\ShopShopBundle(),
+            new Shop\ProductBundle\ShopProductBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

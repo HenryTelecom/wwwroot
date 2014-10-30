@@ -11,7 +11,3 @@ security:
             stateless: true
             simple_preauth:
                 authenticator: ceten.sso_authenticator
-
-    access_control:
-        #- { path: ^/signout, roles: ROLE_USER }
-        #- { path: ^/signin, roles: IS_AUTHENTICATED_ANONYMOUSLY }

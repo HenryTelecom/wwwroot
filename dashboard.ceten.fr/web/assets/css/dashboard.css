@@ -30,3 +30,8 @@ body.fixed .wrapper {
     background-color: #222222;
     color: #ffffff;
 }
+
+img.admin-preview {
+    max-height: 100px;
+    max-width: 100px;
+}

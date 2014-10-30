@@ -26,7 +26,7 @@ class Ceten extends ContainerAware
             array(
                 'label'     => 'Dashboard',
                 'url'       => $this->container->getParameter('ceten.websites.dashboard'),
-                'role'      => 'ROLE_ADMIN'
+                'role'      => 'ROLE_SONATA_ADMIN'
             )
         );
     }

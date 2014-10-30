@@ -3,14 +3,14 @@
 <container xmlns="http://symfony.com/schema/dic/services"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="shop.twig.shop_extension.class">Shop\ShopBundle\Twig\ShopExtension</parameter>
+    </parameters>
 
-    <!--
     <services>
-        <service id="shop_shop.example" class="Shop\ShopBundle\Example">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="shop.twig.shop_extension" class="%shop.twig.shop_extension.class%">
+            <argument type="service" id="service_container" />
+            <tag name="twig.extension" />
         </service>
     </services>
-    -->
 </container>

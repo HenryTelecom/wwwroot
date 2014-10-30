@@ -47,6 +47,12 @@ class Tag
      */
     private $products;
 
+    /**
+     * @Gedmo\SortablePosition
+     * @ORM\Column(name="position", type="integer")
+     */
+    private $position;
+
 
     public function __construct()
     {
@@ -142,6 +148,29 @@ class Tag
         return $this->products;
     }
 
+    /**
+     * Set position
+     *
+     * @param integer $position
+     * @return Tag
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return integer 
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+    
     public function __tostring()
     {
         return $this->name;

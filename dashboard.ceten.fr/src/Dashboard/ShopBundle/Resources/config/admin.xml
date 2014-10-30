@@ -10,9 +10,16 @@
             <tag name="sonata.admin" manager_type="orm" group="Shop" label="Tags" />
             <argument />
             <argument>Ceten\CetenBundle\Entity\Tag</argument>
-            <argument />
+            <argument>PixSortableBehaviorBundle:SortableAdmin</argument>
+            
             <call method="setTranslationDomain">
                 <argument>CetenCetenBundle</argument>
+            </call>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+            <call method="setPositionService">
+                <argument type="service" id="pix_sortable_behavior.position" />
             </call>
         </service>
 
@@ -21,6 +28,7 @@
             <argument />
             <argument>Ceten\CetenBundle\Entity\Product</argument>
             <argument />
+            
             <call method="setTranslationDomain">
                 <argument>CetenCetenBundle</argument>
             </call>

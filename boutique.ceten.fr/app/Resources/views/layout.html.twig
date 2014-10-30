@@ -11,20 +11,64 @@
         <link rel="stylesheet" href="{{ cdn('/assets/css/reset.css') }}">
         <link rel="stylesheet" href="{{ cdn('/assets/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ cdn('/assets/css/ceten-services.css') }}">
+        <link rel="stylesheet" href="/assets/css/nav.css">
+        <link rel="stylesheet" href="/assets/css/shop.css">
         {% block css %}{% endblock %}
 
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="{{ cdn('/assets/js/bootstrap.min.js') }}"></script>
+        <script src="/assets/js/shop.js"></script>
         {% block js %}{% endblock %}
     </head>
     <body>
         <header class="main-header">
 {% include 'CetenCetenBundle:Utils:services.html.twig' %}
+            <div class="main-nav">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ceten-nav-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown">
+                                    <a href="{{ path('shop_index') }}" class="dropdown-toggle navbar-brand" data-toggle="dropdown">
+                                        <img src="{{ cdn('/assets/images/logo/ceten-uni-78x30.png') }}" alt="" title="Cercles des Élèves de TELECOM Nancy" class="ceten-network-icon" >
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="ceten-nav-collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="{{ path('shop_index') }}">Accueil</a></li>
+                                <li><a href="#">Panier</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
         </header>
         <div class="container-fluid">
+{% block body %}
+            <div class="row">
+                <div class="hidden-xs col-sm-3">
+                    <ul>
+{% for tag in tags %}
+                        <li><a href="{{ path('shop_tag_slug', { slug: tag.slug }) }}">{{ tag.name }} ({{ tag.products|length }})</a></li>  
+{% endfor %}
+                    </ul>
+                </div>
+
+                <div class="col-xs-12 col-sm-9">
 {% block content %}{% endblock %}
+                </div>
             </div>
+{% endblock %}
         </div>
     </body>
 </html>

@@ -3,11 +3,9 @@ security:
         Symfony\Component\Security\Core\User\User: plaintext
 
     role_hierarchy:
-        ROLE_ADMIN_USER_USER_READ:
+        ROLE_ADMIN_USER_USER:
             - ROLE_ADMIN_USER_USER_LIST
             - ROLE_ADMIN_USER_USER_VIEW
-
-        ROLE_ADMIN_USER_USER_EDIT:
             - ROLE_ADMIN_USER_USER_CREATE
             - ROLE_ADMIN_USER_USER_EDIT
             - ROLE_ADMIN_USER_USER_DELETE
@@ -29,17 +27,30 @@ security:
             - ROLE_ADMIN_SHOP_TAG_DELETE
             - ROLE_ADMIN_SHOP_TAG_EXPORT
 
+        ROLE_ADMIN_CETEN_MEMBER_READ:
+            - ROLE_ADMIN_CETEN_MEMBER_LIST
+            - ROLE_ADMIN_CETEN_MEMBER_VIEW
+
+        ROLE_ADMIN_CETEN_MEMBER_EDIT:
+            - ROLE_ADMIN_CETEN_MEMBER_READ
+            - ROLE_ADMIN_CETEN_MEMBER_CREATE
+            - ROLE_ADMIN_CETEN_MEMBER_EDIT
+            - ROLE_ADMIN_CETEN_MEMBER_DELETE
+            - ROLE_ADMIN_CETEN_MEMBER_EXPORT
+
+
         # Enable admin access
-        ROLE_ADMIN:         [ROLE_USER, ROLE_SONATA_ADMIN]
+        ROLE_ADMIN:             [ROLE_USER, ROLE_SONATA_ADMIN]
 
-        # Shop admin
-        ROLE_ADMIN_SHOP:    [ROLE_ADMIN, ROLE_ADMIN_SHOP_PRODUCT, ROLE_ADMIN_SHOP_TAG]
+        # Members
+        ROLE_READ_MEMBER:       [ROLE_ADMIN, ROLE_ADMIN_CETEN_MEMBER_READ]
+        ROLE_ADMIN_MEMBER:      [ROLE_ADMIN, ROLE_ADMIN_CETEN_MEMBER_EDIT]
 
-        # User admins
-        ROLE_READ_USER:     [ROLE_ADMIN, ROLE_ADMIN_USER_USER_READ]
-        ROLE_ADMIN_USER:    [ROLE_READ_USER, ROLE_ADMIN_USER_USER_EDIT]
+        # Shop
+        ROLE_ADMIN_SHOP:        [ROLE_ADMIN, ROLE_ADMIN_SHOP_PRODUCT, ROLE_ADMIN_SHOP_TAG]
 
-        # BDE
+        # User
+        ROLE_ADMIN_USER:        [ROLE_ADMIN, ROLE_ADMIN_USER_USER]
 
         # Super admin
-        ROLE_SUPER_ADMIN:   [ROLE_ADMIN_SHOP]
+        ROLE_SUPER_ADMIN:       [ROLe_BDE, ROLE_ADMIN_USER, ROLE_ADMIN_SHOP]

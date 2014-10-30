@@ -1,5 +1,6 @@
 imports:
     - { resource: parameters.yml }
+    - { resource: security.yml }
     - { resource: ../../../app/config/security.yml }
     - { resource: ../../../app/config/sso.yml }
     - { resource: ../../../env.yml }

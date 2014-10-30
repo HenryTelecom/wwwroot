@@ -14,12 +14,25 @@ class UserAdmin extends Admin
         '_sort_by' => 'username'
     );
 
+    public static function getRoles()
+    {
+        return array(
+            'ROLE_USER'             => 'User',
+            'ROLE_READ_MEMBER'      => 'Read Ceten members',
+            'ROLE_EDIT_MEMBER'      => 'Edit Ceten members',
+            'ROLE_ADMIN_SHOP'       => 'Manage shop',
+            'ROLE_SUPER_ADMIN'      => 'Super admin'
+        );
+    }
+
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
             ->add('firstname', null, array('label' => 'First name'))
             ->add('lastname', null, array('label' => 'Last name'))
+            ->add('ceten', null, array('label' => 'Ceten'))
+            ->add('roles', 'choice', array('label' => 'Roles', 'choices' => self::getRoles(), 'multiple' => true))
         ;
     }
 
@@ -38,16 +51,17 @@ class UserAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('firstname', null, array('label' => 'First name'))
-            ->addIdentifier('lastname', null, array('label' => 'Last name'))
-            ->addIdentifier('username', null, array('label' => 'E-mail'))
+            ->add('firstname', null, array('label' => 'First name'))
+            ->add('lastname', null, array('label' => 'Last name'))
+            ->add('username', null, array('label' => 'E-mail'))
+            ->add('enabled', null, array('label' => 'Enabled'))
+            ->add('oauth', null, array('label' => 'Oauth'))
+            ->add('ceten', null, array('label' => 'Ceten', 'editable' => true))
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                    'edit' => array(),
+                )
+            ))
         ;
-
-        if ($this->isGranted('EDIT')) {
-            $listMapper
-                ->addIdentifier('enabled', null, array('label' => 'Enabled', 'roles' => array('ROLE_ADMIN_USER')))
-                ->addIdentifier('oauth', null, array('label' => 'Oauth'))
-            ;
-        }
     }
 }

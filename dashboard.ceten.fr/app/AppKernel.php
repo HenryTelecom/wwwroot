@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Pix\SortableBehaviorBundle\PixSortableBehaviorBundle(),
 
             // Sonata admin bundle
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
@@ -32,6 +33,7 @@ class AppKernel extends Kernel
             new Ceten\SsoBundle\CetenSsoBundle(),
             new Dashboard\UserBundle\DashboardUserBundle(),
             new Dashboard\ShopBundle\DashboardShopBundle(),
+            new Dashboard\CetenBundle\DashboardCetenBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

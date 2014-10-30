@@ -16,7 +16,9 @@
                                     </a>
                                     <ul class="dropdown-menu" role="menu">
 {% for service in ceten.services %}
+{% if service.role is empty or is_granted(service.role) %}
                                         <li><a href="{{ external(service.url) }}">{{ service.label }}</a></li>
+{% endif %}
 {% endfor %}
                                     </ul>
                                 </li>

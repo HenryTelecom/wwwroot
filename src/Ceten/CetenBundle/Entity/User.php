@@ -79,6 +79,13 @@ class User implements AdvancedUserInterface
      */
     private $oauth;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="ceten", type="boolean")
+     */
+    private $ceten;
+
 
 
     /**
@@ -220,11 +227,46 @@ class User implements AdvancedUserInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Get enabled
+     *
+     * @return boolean 
      */
-    public function isEnabled()
+    public function getEnabled()
     {
-        return true;
+        return $this->enabled;
+    }
+
+    /**
+     * Get oauth
+     *
+     * @return boolean 
+     */
+    public function getOauth()
+    {
+        return $this->oauth;
+    }
+
+    /**
+     * Set ceten
+     *
+     * @param boolean $ceten
+     * @return User
+     */
+    public function setCeten($ceten)
+    {
+        $this->ceten = $ceten;
+
+        return $this;
+    }
+
+    /**
+     * Get ceten
+     *
+     * @return boolean 
+     */
+    public function getCeten()
+    {
+        return $this->ceten;
     }
 
     /**
@@ -321,6 +363,14 @@ class User implements AdvancedUserInterface
      * {@inheritdoc}
      */
     public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isEnabled()
     {
         return true;
     }
