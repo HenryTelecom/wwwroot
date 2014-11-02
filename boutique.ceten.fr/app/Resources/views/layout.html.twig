@@ -1,25 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="cetenApp">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width"/>
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <title>{% block title %}| Boutique du Cercles des Élèves de TELECOM Nancy{% endblock %}</title>
+        <title ng:bind-template="{{ '{{ title }}' }} | Boutique du Cercles des Élèves de TELECOM Nancy">Boutique du Cercles des Élèves de TELECOM Nancy</title>
 
         <link rel="icon" type="image/x-icon" href="{{ cdn('/assets/images/logo/ceten-icon-30x30.png') }}">
 
         <link rel="stylesheet" href="{{ cdn('/assets/css/reset.css') }}">
         <link rel="stylesheet" href="{{ cdn('/assets/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ cdn('/assets/css/ceten-services.css') }}">
+        <link rel="stylesheet" href="{{ cdn('/assets/bower_components/ngDialog/css/ngDialog.min.css') }}">
+        <link rel="stylesheet" href="/assets/css/popin.css">
         <link rel="stylesheet" href="/assets/css/nav.css">
         <link rel="stylesheet" href="/assets/css/shop.css">
-        {% block css %}{% endblock %}
 
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="{{ cdn('/assets/js/jquery.min.js') }}"></script>
+        <script>jQuery.noConflict();</script>
         <script src="{{ cdn('/assets/js/bootstrap.min.js') }}"></script>
+        <script src="{{ cdn('/assets/bower_components/angular/angular.min.js') }}"></script>
+        <script src="{{ cdn('/assets/bower_components/angular-mocks/angular-mocks.js') }}"></script>
+        <script src="{{ cdn('/assets/bower_components/angular-route/angular-route.min.js') }}"></script>
+        <script src="{{ cdn('/assets/bower_components/ngDialog/js/ngDialog.min.js') }}"></script>
+        <script>
+            var ceten = {
+                routePrefix: '{{ app.debug ? '/app_dev.php' : '' }}',
+                member: {{ app.user.ceten is defined and app.user.ceten ?  'true' : 'false' }},
+                cdnPrefix: '{{ cdn('') }}',
+                cartCookie: '{{ cartCookie }}',
+                maxOrder: {{ maxOrder }}
+            };
+        </script>
+        <script src="/assets/js/ceten.js"></script>
         <script src="/assets/js/shop.js"></script>
-        {% block js %}{% endblock %}
+        <script src="/assets/js/controllers.js"></script>
     </head>
     <body>
         <header class="main-header">
@@ -46,29 +62,22 @@
                         <div class="collapse navbar-collapse" id="ceten-nav-collapse">
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="{{ path('shop_index') }}">Accueil</a></li>
-                                <li><a href="#">Panier</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories</a>
+                                    <ul class="dropdown-menu" role="menu">
+{% for tag in tags %}
+                                        <li><a href="{{ path('shop_tag_slug', { slug: tag.slug }) }}">{{ tag.name }} ({{ tag.products|length }})</a></li>
+{% endfor %}
+                                    </ul>
+                                </li>
+                                <li><a href="{{ path('shop_cart_list') }}">Panier <span ng:bind-template="({{ '{{ ceten.sum(ceten.values(cart)) }}' }})"></span></a></li>
                             </ul>
                         </div>
                     </div>
                 </nav>
             </div>
         </header>
-        <div class="container-fluid">
-{% block body %}
-            <div class="row">
-                <div class="hidden-xs col-sm-3">
-                    <ul>
-{% for tag in tags %}
-                        <li><a href="{{ path('shop_tag_slug', { slug: tag.slug }) }}">{{ tag.name }} ({{ tag.products|length }})</a></li>  
-{% endfor %}
-                    </ul>
-                </div>
 
-                <div class="col-xs-12 col-sm-9">
-{% block content %}{% endblock %}
-                </div>
-            </div>
-{% endblock %}
-        </div>
+        <div class="wrapper" ng-view></div>
     </body>
 </html>

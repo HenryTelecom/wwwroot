@@ -60,7 +60,6 @@ class TagAdmin extends Admin
         $this->last_position = $this->positionService->getLastPosition($this->getRoot()->getClass());
         $listMapper
             ->add('name', null, array('label' => 'Name'))
-            ->add('slug', null, array('label' => 'Slug'))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),

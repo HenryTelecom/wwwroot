@@ -1,0 +1,37 @@
+<div class="nav-bottom">
+    <div class="search-box">
+        <input ng-model="search.product.name" placeholder="Rechercher">
+    </div>
+    <h1>Panier</h1>
+</div>
+
+<div class="body-wrapper order-list">
+    <div class="container-fluid">
+        <div class="row order-header">
+            <div class="col-xs-3 col-sm-4 col-md-7">Produit</div>
+            <div class="col-xs-3 col-sm-3 col-md-2">Prix </div>
+            <div class="col-xs-3 col-sm-3 col-md-2">Quantité</div>
+        </div>
+        
+        <div class="row order" ng-repeat="order in orders | filter:search">
+            <div class="col-xs-3 col-sm-4 col-md-7">{{ order.product.name }}</div>
+            
+            <div class="col-xs-3 col-sm-3 col-md-2">{{ ceten.price(order.product) }}</div>
+
+            <div class="col-xs-3 col-sm-3 col-md-2">
+                <div class="order-amount">
+                    <a ng-click="toggleDropdown">{{ order.count }}</a>
+                    <ul class="dropdown">
+                        <li ng-repeat="i in ceten.range(1, ceten.maxStock(order.product))">
+                            <a ng-click="ceten.cart.set(order.product, i, order)">{{ i }}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-xs-3 col-sm-2 col-md-1">
+                <a ng-click="ceten.cart.remove(order, orders)" class="order-delete">Supprimer</a>
+            </div>
+        </div>
+    </div>
+</div>

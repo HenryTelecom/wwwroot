@@ -14,27 +14,26 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use JMS\Serializer\SerializationContext;
 
-
 /**
- * @Route("/categories")
+ * @Route("/produits")
  */
-class TagController extends Controller
+class ProductController extends Controller
 {
     /**
-     * @Route(".{_format}", name="shop_tag_index", defaults={"_format": "html"})
+     * @Route(".{_format}", name="shop_product_list", defaults={"_format": "html"})
      * @Method({"GET"})
      * @Template("::layout.html.twig")
      */
     public function indexAction($_format)
-    {   
+    {
         $em = $this->container->get('doctrine.orm.entity_manager');
-        $tags = $em->getRepository('CetenCetenBundle:Tag')->findBy(array(), array('position' => 'ASC'));
+        $products = $em->getRepository('CetenCetenBundle:Product')->findBy(array('homepage' => true));
 
         if ($_format === 'json') {
             $json = $this
                         ->container
                         ->get('jms_serializer')
-                        ->serialize($tags, 'json', SerializationContext::create()->setGroups(array('tag_list')));
+                        ->serialize($products, 'json', SerializationContext::create()->setGroups(array('product_list')));
 
             return new Response($json, 200, array(
                 'Context-Type' => 'application/json; charset=utf-8'
@@ -43,25 +42,26 @@ class TagController extends Controller
         return array();
     }
 
+
     /**
-     * @Route("/{slug}.{_format}", name="shop_tag_slug", defaults={"_format": "html"})
+     * @Route("/{slug}.{_format}", name="shop_product_slug", defaults={"_format": "html"})
      * @Method({"GET"})
      * @Template("::layout.html.twig")
      */
     public function slugAction($slug, $_format)
     {
         $em = $this->container->get('doctrine.orm.entity_manager');
-        $tag = $em->getRepository('CetenCetenBundle:Tag')->findOneBy(array('slug' => $slug));
+        $product = $em->getRepository('CetenCetenBundle:Product')->findOneBy(array('slug' => $slug));
 
-        if (!$tag) {
-            throw new NotFoundHttpException(sprintf('Tag "%s" not found', $slug));
+        if (!$product) {
+            throw new NotFoundHttpException(sprintf('Product "%s" not found', $slug));
         }
 
         if ($_format === 'json') {
             $json = $this
                         ->container
                         ->get('jms_serializer')
-                        ->serialize($tag, 'json', SerializationContext::create()->setGroups(array('tag_detail')));
+                        ->serialize($product, 'json', SerializationContext::create()->setGroups(array('product_detail')));
 
             return new Response($json, 200, array(
                 'Context-Type' => 'application/json; charset=utf-8'
@@ -69,7 +69,7 @@ class TagController extends Controller
         }
 
         return array(
-            'tag' =>  $tag
+            'product' =>  $product
         );
     }
 }

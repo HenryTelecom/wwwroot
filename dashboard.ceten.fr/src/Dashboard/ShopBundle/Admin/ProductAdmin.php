@@ -33,9 +33,11 @@ class ProductAdmin extends Admin
 
         $formMapper
             ->add('name', null, array('label' => 'Name'))
-            ->add('priceCeten', null, array('label' => 'Price for CETEN'))
+            ->add('cetenPrice', null, array('label' => 'Price for CETEN'))
             ->add('price', null, array('label' => 'Price for non-CETEN'))
+            ->add('stock', null, array('label' => 'Stock'))
             ->add('description', null, array('label' => 'Description'))
+            ->add('homepage', null, array('label' => 'Homepage', 'required' => false))
             ->add('imageFile', 'file', $fileFieldOptions)
             ->add('tags', 'sonata_type_model', array('label' => 'Tags', 'multiple' => true, 'by_reference' => false, 'required' => false))
         ;
@@ -46,6 +48,7 @@ class ProductAdmin extends Admin
     {
         $datagridMapper
             ->add('name', null, array('label' => 'Name'))
+            ->add('homepage', null, array('label' => 'Homepage'))
         ;
     }
 
@@ -54,9 +57,11 @@ class ProductAdmin extends Admin
     {
         $listMapper
             ->add('name', null, array('label' => 'Name'))
-            ->add('slug', null, array('label' => 'Slug'))
-            ->add('priceCeten', 'currency', array('label' => 'Price for CETEN', 'currency' => 'EUR'))
-            ->add('price', 'currency', array('label' => 'Price for non-CETEN', 'currency' => 'EUR'))
+            ->add('cetenPrice', null, array('label' => 'Price for CETEN'))
+            ->add('price', null, array('label' => 'Price for non-CETEN'))
+            ->add('stock', null, array('label' => 'Stock', 'editable' => true))
+            ->add('image', null, array('label' => 'Image', 'template' => 'DashboardShopBundle:Sonata:upload.html.twig'))
+            ->add('homepage', null, array('label' => 'Homepage', 'editable' => true))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),

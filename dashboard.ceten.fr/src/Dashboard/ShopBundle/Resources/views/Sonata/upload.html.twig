@@ -1,0 +1,5 @@
+{% extends admin.getTemplate('base_list_field') %}
+
+{% block field %}
+    <div class="text-center"><img src="{{ cdn(value) }}" class="admin-list-preview"></div>
+{% endblock %}

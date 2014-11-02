@@ -1,0 +1,19 @@
+<div class="product-detail" ng-if="product">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="hidden-xs col-sm-6 no-padding">
+                <div class="product-slider">
+
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <h1>{{ product.name }}</h1>
+
+                <div class="product-description" ng-bind-html="product.description | nl2br"></div>
+                
+                <a class="product-price" ng-click="ceten.cart.add(product)">{{ ceten.price(product) }}</a>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -6,6 +6,7 @@
 /boutique.ceten.fr/app/logs/*
 !boutique.ceten.frapp/cache/.gitkeep
 !boutique.ceten.frapp/logs/.gitkeep
+/cdn.ceten.fr/assets/bower_components/
 /dashboard.ceten.fr/web/bundles/
 /dashboard.ceten.fr/app/bootstrap.php.cache
 /dashboard.ceten.fr/app/cache/*

@@ -4,7 +4,9 @@ namespace Ceten\CetenBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
+
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -21,6 +23,7 @@ class Tag
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Serializer\Groups({ "tag_list", "tag_detail", "product_detail" })
      */
     private $id;
 
@@ -29,6 +32,7 @@ class Tag
      *
      * @ORM\Column(name="name", type="string", length=100)
      * @Assert\NotBlank()
+     * @Serializer\Groups({ "tag_list", "tag_detail", "product_detail" })
      */
     private $name;
 
@@ -37,6 +41,7 @@ class Tag
      *
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(name="slug", type="string", length=100)
+     * @Serializer\Groups({ "tag_list", "tag_detail", "product_detail" })
      */
     private $slug;
 
@@ -44,12 +49,14 @@ class Tag
      * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Ceten\CetenBundle\Entity\Product", mappedBy="tags", fetch="EAGER", cascade={"persist"})
+     * @Serializer\Groups({ "tag_list", "tag_detail" })
      */
     private $products;
 
     /**
      * @Gedmo\SortablePosition
      * @ORM\Column(name="position", type="integer")
+     * @Serializer\Exclude()
      */
     private $position;
 

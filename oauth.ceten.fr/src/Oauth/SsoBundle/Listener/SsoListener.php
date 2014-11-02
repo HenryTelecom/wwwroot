@@ -13,6 +13,30 @@ use Ceten\CetenBundle\Entity\Session;
 
 class SsoListener extends ContainerAware
 {
+    public function onKernelRequest()
+    {
+        $context = $this->container->get('security.context');
+        if (null !== $token = $this->container->get('security.context')->getToken()) {
+            
+            // Change ceten state for authenticated user
+            if (null !== ($user = $token->getUser())) {
+                if (!$user instanceof User) {
+                    return;
+                }
+
+                $em = $this->container->get('doctrine.orm.entity_manager');
+                $member = $em->getRepository('CetenCetenBundle:Member')->findOneBy(array('email' => $user->getUsername()));
+
+                if ($member) {
+                    $user->setCeten(true);
+                } else {
+                    $user->setCeten(false);
+                }
+                $em->flush();
+            }
+        }
+    }
+
     public function onKernelResponse(FilterResponseEvent $event)
     {
 
@@ -26,7 +50,7 @@ class SsoListener extends ContainerAware
 
         if (!$request->cookies->has($ssoSession)) {
             $id = sha1(uniqid('', true));
-            $cookie = new Cookie('sso_session', $id, 0, '/', '.ceten.fr');
+            $cookie = new Cookie($ssoSession, $id, 0, '/', '.ceten.fr');
             $event->getResponse()->headers->setCookie($cookie);
         } else {
             $id = $request->cookies->get($ssoSession);

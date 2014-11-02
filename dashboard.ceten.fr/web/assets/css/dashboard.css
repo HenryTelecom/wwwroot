@@ -35,3 +35,12 @@ img.admin-preview {
     max-height: 100px;
     max-width: 100px;
 }
+
+img.admin-list-preview {
+    max-height: 30px;
+    max-width: 30px;
+}
+
+.text-center {
+    text-align: center;
+}

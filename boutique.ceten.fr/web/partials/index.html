@@ -1,0 +1,15 @@
+<div class="nav-bottom">
+    <ul>
+        <li ng-repeat="tag in tags"><a href="{{ ceten.uri('/categories/' + tag.slug) }}">{{ tag.name }} ({{ tag.products.length }})</a></li>
+    </ul>
+</div>
+
+<div class="body-wrapper">
+    <div class="container-fluid">
+        <div class="row product-list">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 no-padding" ng-repeat="product in products">
+                <div ng-include="'/partials/product/list.html'"></div>
+            </div>
+        </div>
+    </div>
+</div>

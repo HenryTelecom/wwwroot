@@ -4,8 +4,10 @@ namespace Ceten\CetenBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as Serializer;
+
+use Doctrine\Common\Collections\ArrayCollection;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -28,6 +30,7 @@ class Product
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Serializer\Groups({ "order_detail", "tag_list", "tag_detail", "product_list", "product_detail" })
      */
     private $id;
 
@@ -36,6 +39,7 @@ class Product
      *
      * @ORM\Column(name="name", type="string", length=100)
      * @Assert\NotBlank()
+     * @Serializer\Groups({ "order_detail", "tag_detail", "product_list", "product_detail" })
      */
     private $name;
 
@@ -44,6 +48,7 @@ class Product
      *
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(name="slug", type="string", length=100)
+     * @Serializer\Groups({ "order_detail", "tag_detail", "product_list", "product_detail" })
      */
     private $slug;
 
@@ -52,6 +57,7 @@ class Product
      *
      * @ORM\Column(name="description", type="text")
      * @Assert\NotBlank()
+     * @Serializer\Groups({ "product_detail" })
      */
     private $description;
 
@@ -61,24 +67,27 @@ class Product
      * @ORM\Column(name="price", type="float")
      * @Assert\NotBlank()
      * @Assert\Type(type="float")
+     * @Serializer\Groups({ "order_detail", "tag_detail", "product_list", "product_detail" })
      */
     private $price;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="priceCeten", type="float")
+     * @ORM\Column(name="cetenPrice", type="float")
      * @Assert\NotBlank()
      * @Assert\Type(type="float")
+     * @Serializer\Groups({ "order_detail", "tag_detail", "product_list", "product_detail" })
      */
-    private $priceCeten;
+    private $cetenPrice;
 
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Ceten\CetenBundle\Entity\Tag", inversedBy="products", fetch="EAGER", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Ceten\CetenBundle\Entity\Tag", inversedBy="products", cascade={"persist"})
      * @ORM\JoinTable(name="products_tags")
      * @Assert\Count(min=1)
+     * @Serializer\Groups({ "product_detail" })
      */
     private $tags;
 
@@ -86,6 +95,7 @@ class Product
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255)
+     * @Serializer\Groups({ "tag_detail", "product_list", "product_detail" })
      */
     private $image;
 
@@ -93,8 +103,29 @@ class Product
      * @var DateTime
      *
      * @ORM\Column(name="updated", type="datetime")
+     * @Serializer\Exclude()
      */
     private $updated;
+
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="homepage", type="boolean")
+     * @Serializer\Exclude()
+     */
+    private $homepage;
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="stock", type="integer")
+     * @Serializer\Groups({ "order_detail", "tag_detail", "product_list", "product_detail" })
+     */
+    private $stock;
+
+
 
     /**
      * Image uplaod handler
@@ -213,26 +244,26 @@ class Product
     }
 
     /**
-     * Set priceCeten
+     * Set cetenPrice
      *
-     * @param float $priceCeten
+     * @param float $cetenPrice
      * @return Product
      */
-    public function setPriceCeten($priceCeten)
+    public function setCetenPrice($cetenPrice)
     {
-        $this->priceCeten = $priceCeten;
+        $this->cetenPrice = $cetenPrice;
 
         return $this;
     }
 
     /**
-     * Get priceCeten
+     * Get cetenPrice
      *
      * @return float 
      */
-    public function getPriceCeten()
+    public function getCetenPrice()
     {
-        return $this->priceCeten;
+        return $this->cetenPrice;
     }
 
     /**
@@ -314,6 +345,58 @@ class Product
         return $this->updated;
     }
 
+    /**
+     * Set homepage
+     *
+     * @param boolean $homepage
+     * @return Product
+     */
+    public function setHomepage($homepage)
+    {
+        $this->homepage = $homepage;
+
+        return $this;
+    }
+
+    /**
+     * Get homepage
+     *
+     * @return boolean 
+     */
+    public function getHomepage()
+    {
+        return $this->homepage;
+    }
+
+    /**
+     * Set stock
+     *
+     * @param integer $stock
+     * @return Product
+     */
+    public function setStock($stock)
+    {
+        $this->stock = $stock;
+
+        return $this;
+    }
+
+    /**
+     * Get stock
+     *
+     * @return integer 
+     */
+    public function getStock()
+    {
+        return $this->stock;
+    }
+
+
+    /**
+     * Set file.
+     * 
+     * @param   $imagFile
+     */
     public function setImageFile(UploadedFile $imageFile = null)
     {
         $this->imageFile = $imageFile;
@@ -346,8 +429,13 @@ class Product
             return;
         }
 
+        $ext = $this->imageFile->guessClientExtension();
+        if (!in_array($ext, array('png', 'jpg', 'jpeg'))) {
+            return;
+        }
+
         $this->temp = $this->image;
-        $this->tempName = sha1(uniqid(mt_rand(), true)) . '.' .  $this->imageFile->guessClientExtension();
+        $this->tempName = sha1(uniqid(mt_rand(), true)) . '.' .  $ext;
         $this->image =  self::IMAGE_PATH . '/' . $this->tempName;
     }
 

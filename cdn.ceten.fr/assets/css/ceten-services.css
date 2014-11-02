@@ -13,7 +13,7 @@
         top: 0;
         left: 0;
         right: 0;
-    z-index: 9999;
+    z-index: 9999999;
 }
 
 .ceten-services .navbar-nav {
@@ -41,7 +41,7 @@
 }
 
 .ceten-services .navbar-default .navbar-nav > li > a {
-    padding: 0 10px 0 10px;
+    padding: 0 20px 0 20px;
     color: #ffffff;
     line-height: 30px;
 }
@@ -113,4 +113,10 @@
 
 .ceten-services .navbar-brand img {
     height: auto;
+}
+
+@media (min-width: 768px) {
+    .ceten-services .navbar .container-fluid {
+        padding: 0;
+    }
 }

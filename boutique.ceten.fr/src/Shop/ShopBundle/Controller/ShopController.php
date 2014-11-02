@@ -12,7 +12,7 @@ class ShopController extends Controller
     /**
      * @Route("/", name="shop_index")
      * @Method({"GET"})
-     * @Template()
+     * @Template("::layout.html.twig")
      */
     public function indexAction()
     {
