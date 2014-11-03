@@ -29,15 +29,19 @@ ceten.init = function ($rootScope) {
     /**
      * Add a product to cart
      */
-    ceten.cart.add = function (product) {
+    ceten.cart.add = function (product, amount) {
         if (undefined == product) {
             return;
+        }
+
+        if (undefined == amount) {
+            amount = 1;
         }
 
         if (!$rootScope.cart[product.id]) {
             $rootScope.cart[product.id] = 0;
         }
-        $rootScope.cart[product.id]++;
+        $rootScope.cart[product.id] += amount;
 
         var stock = ceten.maxStock(product);
         if ($rootScope.cart[product.id] > stock) {
@@ -106,7 +110,7 @@ ceten.init = function ($rootScope) {
      */
     ceten.cart.load = function () {
         if (document.cookie) {
-            $rootScope.cart = JSON.parse(ceten.cookie.get(ceten.cartCookie).base64decode());
+            $rootScope.cart = JSON.parse(ceten.cookie.get(ceten.cartCookie).base64decode()) || {};
         }
     }
 };

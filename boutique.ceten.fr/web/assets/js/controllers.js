@@ -38,9 +38,15 @@ cetenControllers.controller('IndexCtrl', ['$scope', '$http', '$routeParams', '$r
  */
 cetenControllers.controller('ProductDetailCtrl', ['$scope', '$http', '$routeParams', '$rootScope',
   function ($scope, $http, $routeParams, $rootScope) {
+    $scope.amount = 1;
+
     $http.get(ceten.uri('/produits/' + $scope.ngDialogData.product.slug + '.json')).success(function(data) {
         $scope.product = data;
     });
+
+    $scope.setAmount = function (i) {
+        $scope.amount = i;
+    };
 }]);
 
 

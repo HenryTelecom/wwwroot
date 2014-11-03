@@ -1,7 +1,7 @@
 <div class="product">
     <div class="product-image"><img data-ng-src="{{ ceten.cdn(product.image) }}" alt="test"></div>
     <div class="product-info">
-        <a class="product-price" ng-click="ceten.cart.add(product)">{{ ceten.price(product) }}</a>
-        <a ng-click="productDetail(product)" class="product-detail">{{ product.name }}</a>
+        <a class="product-price" ng-click="ceten.cart.add(product)" ng-if="product.stock > 0">{{ ceten.price(product) }}</a>
+        <a ng-click="productDetail(product)" class="product-detail" ng-class="{true: 'no-margin'}[product.stock == 0]">{{ product.name }}</a>
     </div>
 </div>

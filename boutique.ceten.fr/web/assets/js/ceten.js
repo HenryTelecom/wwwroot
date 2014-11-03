@@ -32,8 +32,10 @@ ceten.product = {};
 
 /**
  * Product price
+ * @param  {object} product
+ * @param  {number} amount
+ * @return {number}
  */
-
 ceten.product.price = function (product, amount) {
     if (undefined == amount) {
         amount = 1;
@@ -62,7 +64,7 @@ ceten.cdn = function (uri) {
  */
 ceten.uri = function(uri) {
     return this.routePrefix + uri;
-}
+};
 
 /**
  * Display price
@@ -77,16 +79,44 @@ ceten.price = function (product) {
 };
 
 /**
+ * Orders total
+ * @param  {object} orders
+ * @return {number}
+ */
+ceten.total = function (orders) {
+    if (orders == undefined) {
+        return;
+    }
+
+    var sum = 0,
+        order;
+    for (var i in orders) {
+        order = orders[i];
+        sum += ceten.product.price(order.product, order.count);
+    }
+
+    return sum.toFixed(2) + '€';
+};
+
+/**
  * Max stock
  * @param object product
- * @return {integer}
+ * @return {number}
  */
 ceten.maxStock = function (product) {
     if (undefined == product) {
         return 0;
     }
     return (product.stock > this.maxOrder) ? this.maxOrder : product.stock;
-}
+};
+
+
+/**
+ * 
+ */
+ceten.order = function () {
+    alert(0);
+};
 
 
 /****************************************
@@ -97,6 +127,7 @@ ceten.maxStock = function (product) {
 
 /**
  * Decode url
+ * @return {string} URL decoded string
  */
 String.prototype.urlDecode = function  () {
     return decodeURIComponent(this.toString()).replace(/\+/g, '%20');
@@ -104,6 +135,7 @@ String.prototype.urlDecode = function  () {
 
 /**
  * Encode url
+ * @return {string} URL encoded string
  */
 String.prototype.urlEncode = function  () {
     return encodeURIComponent(this.toString());
@@ -113,6 +145,7 @@ String.prototype.urlEncode = function  () {
 /**
  * Encode in base64
  * @source  PHPJS
+ * @return {string} Base64 encoded string
  */
 String.prototype.base64encode = function () {
     //    discuss at: http://phpjs.org/functions/base64_encode/
@@ -166,6 +199,7 @@ String.prototype.base64encode = function () {
 /**
  * Decode in base64
  * @source PHPJS
+ * @return {string} Base64 decoded string
  */
 String.prototype.base64decode = function () {
     //    discuss at: http://phpjs.org/functions/base64_decode/
@@ -226,6 +260,7 @@ String.prototype.base64decode = function () {
 /**
  * HTML special chars
  * @source PHPJS
+ * @return {string} HTML encoded string
  */
 String.prototype.htmlspecialchars = function(quote_style, charset, double_encode) {
 
@@ -304,6 +339,11 @@ String.prototype.htmlspecialchars = function(quote_style, charset, double_encode
  * 
  ***************************************/
 
+/**
+ * Return object values
+ * @param  {oject} o
+ * @return {array}
+ */
 ceten.values = function (o) {
     var values = [];
     for (var i in o) {
@@ -312,14 +352,6 @@ ceten.values = function (o) {
         }
     }
     return values;
-}
-
-ceten.sum = function (a) {
-    var sum = 0;
-    for (var i in a) {
-        sum += a[i];
-    }
-    return sum;
 }
 
 
@@ -332,7 +364,10 @@ ceten.sum = function (a) {
 ceten.cookie = {};
 
 /**
- * Set a cookie
+ * set a cookie
+ * @param {string} name
+ * @param {string} value
+ * @param {number} expires Number of seconds before expiration
  */
 ceten.cookie.set = function (name, value, expires) {
     var expires = '';
@@ -344,6 +379,11 @@ ceten.cookie.set = function (name, value, expires) {
     document.cookie = name + "=" + value.urlEncode() + '; path=/' + expires;
 };
 
+/**
+ * Get a cookie
+ * @param  {string} name
+ * @return {string} Cookie value or null if cookie does not exist
+ */
 ceten.cookie.get = function (name) {
     name = name + '=';
     var cookies = document.cookie.split("; "),
@@ -364,6 +404,13 @@ ceten.cookie.get = function (name) {
  * 
  ***************************************/
 
+/**
+ * Create number range
+ * @param  {number} start
+ * @param  {number} end
+ * @param  {number} step
+ * @return {array}
+ */
 Array.range = function (start, end, step) {
     if (end < start) {
         return [];
@@ -382,3 +429,16 @@ Array.range = function (start, end, step) {
 }
 
 ceten.range = Array.range;
+
+/**
+ * Array sum
+ * @param  {array} a
+ * @return {float|integer}
+ */
+ceten.sum = function (a) {
+    var sum = 0;
+    for (var i in a) {
+        sum += a[i];
+    }
+    return sum;
+}
