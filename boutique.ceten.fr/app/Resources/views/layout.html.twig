@@ -70,7 +70,10 @@
 {% endfor %}
                                     </ul>
                                 </li>
-                                <li><a href="{{ path('shop_cart_list') }}">Panier <span ng:bind-template="({{ '{{ ceten.sum(ceten.values(cart)) }}' }})"></span></a></li>
+                                <li><a href="{{ path('shop_cart_list') }}">Mon panier <span ng:bind-template="({{ '{{ ceten.sum(ceten.values(cart)) }}' }})"></span></a></li>
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <li><a href="{{ path('shop_order_list') }}">Mes commandes</a></li>
+{% endif %}
                             </ul>
                         </div>
                     </div>

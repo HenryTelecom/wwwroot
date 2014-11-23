@@ -7,6 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as Serializer;
 
 use Ceten\CetenBundle\Entity\Product;
+use Ceten\CetenBundle\Entity\ShopOrder;
 
 /**
  * ProductOrder
@@ -38,11 +39,20 @@ class ProductOrder
     /**
      * @var Product
      * 
-     * @ORM\ManyToOne(targetEntity="Ceten\CetenBundle\Entity\Product")
+     * @ORM\ManyToOne(targetEntity="Ceten\CetenBundle\Entity\Product", fetch="EAGER")
      * @ORM\JoinColumn(nullable=false)
      * @Serializer\Groups({ "order_detail" })
      */
     private $product;
+
+    /**
+     * @var ShopOrder
+     * 
+     * @ORM\ManyToOne(targetEntity="Ceten\CetenBundle\Entity\ShopOrder", inversedBy="orders", fetch="EAGER")
+     * @ORM\JoinColumn(nullable=false, onDelete="cascade")
+     * @Serializer\Exclude()
+     */
+    private $order;
 
 
     /**
@@ -101,8 +111,31 @@ class ProductOrder
         return $this->product;
     }
 
+    /**
+     * Set order
+     *
+     * @param \Ceten\CetenBundle\Entity\ShopOrder $order
+     * @return ProductOrder
+     */
+    public function setOrder(ShopOrder $order)
+    {
+        $this->order = $order;
+
+        return $this;
+    }
+
+    /**
+     * Get order
+     *
+     * @return \Ceten\CetenBundle\Entity\ShopOrder 
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
     public function __tostring()
     {
-        return $this->product;
+        return $this->product->__tostring() . ' (' . $this->count . ')';
     }
 }

@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  *
  * @ORM\Table(name="products", uniqueConstraints={@ORM\UniqueConstraint(name="product_unique_idx", columns={"slug"})})
  * @ORM\HasLifecycleCallbacks
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Ceten\CetenBundle\Entity\ProductRepository")
  */
 class Product
 {

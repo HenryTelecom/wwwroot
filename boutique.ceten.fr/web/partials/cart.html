@@ -13,33 +13,42 @@
             <div class="col-xs-3 col-sm-3 col-md-2">Prix </div>
         </div>
         
-        <div class="row order" ng-repeat="order in orders | filter:search">
-            <div class="col-xs-3 col-sm-3 col-md-6">{{ order.product.name }}</div>
+        <div class="row order" ng-repeat="o in order.orders | filter:search">
+            <div class="col-xs-3 col-sm-3 col-md-6">{{ o.product.name }}</div>
 
             <div class="col-xs-3 col-sm-3 col-md-2 no-padding">
                 <div class="order-amount">
-                    <a ng-click="toggleDropdown">{{ order.count }}</a>
+                    <a ng-click="toggleDropdown">{{ o.count }}</a>
                     <ul class="dropdown">
-                        <li ng-repeat="i in ceten.range(1, ceten.maxStock(order.product))">
-                            <a ng-click="ceten.cart.set(order.product, i, order)">{{ i }}</a>
+                        <li ng-repeat="i in ceten.range(1, ceten.maxStock(o.product))">
+                            <a ng-click="ceten.cart.set(o.product, i, o)">{{ i }}</a>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <div class="col-xs-3 col-sm-3 col-md-2">{{ ceten.price(order.product) }}</div>
+            <div class="col-xs-3 col-sm-3 col-md-2">{{ ceten.price(o.product) }}</div>
 
             <div class="col-xs-3 col-sm-3 col-md-2 no-padding order-delete">
-                <a ng-click="ceten.cart.remove(order, orders)" >Supprimer</a>
+                <a ng-click="ceten.cart.remove(o, order.orders)" >Supprimer</a>
             </div>
         </div>
 
         <div class="row order-total">
             <div class="col-xs-3 col-sm-3 col-md-6"></div>
-            <div class="col-xs-3 col-sm-3 col-md-2"></div>
-            <div class="col-xs-3 col-sm-3 col-md-2"><strong>{{ ceten.total(orders) }}</strong></div>
+            <div class="col-xs-3 col-sm-3 col-md-2 no-padding">
+                <div class="order-order">
+                    <a ng-click="toggleDropdown">{{ types[type] }}</a>
+                    <ul class="dropdown">
+                        <li ng-repeat="i in types">
+                            <a ng-click="setType($index)">{{ i }}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3 col-md-2"><strong>{{ ceten.total(order) }}</strong></div>
             <div class="col-xs-3 col-sm-3 col-md-2 no-padding order-button">
-                <a ng-click="ceten.order()">Commander</a>
+                <a ng-click="sendOrder()">Commander</a>
             </div>
         </div>
     </div>

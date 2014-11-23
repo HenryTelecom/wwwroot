@@ -136,6 +136,10 @@ var cetenApp = angular
                         templateUrl: '/partials/cart.html',
                         controller: 'CartCtrl',
                     })
+                .when(ceten.uri('/mes-commandes'), {
+                        templateUrl: '/partials/orders.html',
+                        controller: 'OrderCtrl',
+                    })
                 .otherwise({
                         redirectTo: ceten.uri('/')
                     });

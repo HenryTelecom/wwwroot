@@ -44,6 +44,7 @@ ceten.product.price = function (product, amount) {
     if (undefined == product) {
         return '';
     }
+
     if (ceten.member) {
         return product.ceten_price * amount;
     }
@@ -83,16 +84,17 @@ ceten.price = function (product) {
  * @param  {object} orders
  * @return {number}
  */
-ceten.total = function (orders) {
-    if (orders == undefined) {
+ceten.total = function (order) {
+    if (order == undefined || order.orders == undefined) {
         return;
     }
-
+    
     var sum = 0,
         order;
-    for (var i in orders) {
-        order = orders[i];
-        sum += ceten.product.price(order.product, order.count);
+    for (var i in order.orders) {
+        o = order.orders[i];
+
+        sum += ceten.product.price(o.product, o.count);
     }
 
     return sum.toFixed(2) + '€';
@@ -108,14 +110,6 @@ ceten.maxStock = function (product) {
         return 0;
     }
     return (product.stock > this.maxOrder) ? this.maxOrder : product.stock;
-};
-
-
-/**
- * 
- */
-ceten.order = function () {
-    alert(0);
 };
 
 

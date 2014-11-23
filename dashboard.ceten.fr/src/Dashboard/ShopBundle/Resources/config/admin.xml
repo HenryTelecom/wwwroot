@@ -4,6 +4,7 @@
     <parameters>
         <parameter key="admin.shop.tag.class">Dashboard\ShopBundle\Admin\TagAdmin</parameter>
         <parameter key="admin.shop.product.class">Dashboard\ShopBundle\Admin\ProductAdmin</parameter>
+        <parameter key="admin.shop.order.class">Dashboard\ShopBundle\Admin\OrderAdmin</parameter>
     </parameters>
     <services>
         <service id="admin.shop.tag" class="%admin.shop.tag.class%">
@@ -27,6 +28,17 @@
             <tag name="sonata.admin" manager_type="orm" group="Shop" label="Products" />
             <argument />
             <argument>Ceten\CetenBundle\Entity\Product</argument>
+            <argument />
+            
+            <call method="setTranslationDomain">
+                <argument>CetenCetenBundle</argument>
+            </call>
+        </service>
+
+        <service id="admin.shop.order" class="%admin.shop.order.class%">
+            <tag name="sonata.admin" manager_type="orm" group="Shop" label="Orders" />
+            <argument />
+            <argument>Ceten\CetenBundle\Entity\ShopOrder</argument>
             <argument />
             
             <call method="setTranslationDomain">

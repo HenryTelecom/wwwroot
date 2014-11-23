@@ -43,7 +43,7 @@ class MemberAdmin extends Admin
         $formMapper
             ->add('firstname', null, array('label' => 'First name'))
             ->add('lastname', null, array('label' => 'Last name'))
-            ->add('email', null, array('label' => 'E-mail address'))
+            ->add('email', null, array('label' => 'E-mail address', 'required' => false))
             ->add('year', 'choice', array('label' => 'Year', 'choices' => self::getYearChoices()))
             ->add('payment', 'choice', array('label' => 'Payment type', 'choices' => self::getPaymentChoices()))
             ->add('deposit', null, array('label' => 'Deposit', 'required' => false))
