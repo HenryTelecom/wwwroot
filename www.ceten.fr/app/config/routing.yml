@@ -1,0 +1,5 @@
+www_www:
+    resource: "@WwwWwwBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

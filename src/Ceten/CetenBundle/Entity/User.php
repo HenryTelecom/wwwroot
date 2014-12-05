@@ -84,7 +84,7 @@ class User implements AdvancedUserInterface
      *
      * @ORM\Column(name="ceten", type="boolean")
      */
-    private $ceten;
+    private $ceten = false;
 
 
 

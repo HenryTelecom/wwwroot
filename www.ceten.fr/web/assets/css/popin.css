@@ -1,0 +1,60 @@
+.ngdialog {
+    z-index: 999999999;
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-content {
+    background: #ffffff;
+    margin: 0 auto;
+    position: relative;
+        top: 90px;
+    width: 80%;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .ngdialog.ngdialog-theme-default .ngdialog-content {
+        width: 600px;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .ngdialog.ngdialog-theme-default .ngdialog-content {
+        width: 800px;
+    }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .ngdialog.ngdialog-theme-default .ngdialog-content {
+        width: 1000px;
+    }
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-close {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 999;
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-close:before {
+    background: transparent;
+    color: #6c2466;
+    content: '\00D7';
+    font-size: 36px;
+    font-weight: 400;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    text-align: center;
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-close:hover:before,
+.ngdialog.ngdialog-theme-default .ngdialog-close:active:before {
+    color: #451041;
+}

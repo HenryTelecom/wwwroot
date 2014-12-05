@@ -4,7 +4,7 @@
     "type": "project",
     "description": "The \"Symfony Standard Edition\" distribution",
     "autoload": {
-        "psr-0": { "": ["src/", "oauth.ceten.fr/src/", "boutique.ceten.fr/src/", "dashboard.ceten.fr/src/"], "SymfonyStandard": "app/" }
+        "psr-0": { "": ["src/", "oauth.ceten.fr/src/", "boutique.ceten.fr/src/", "dashboard.ceten.fr/src/", "www.ceten.fr/src/"], "SymfonyStandard": "app/" }
     },
     "require": {
         "php": ">=5.3.3",
