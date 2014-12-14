@@ -1,14 +1,14 @@
-<div class="nav-bottom">
-    <ul>
-        <li ng-repeat="tag in tags"><a href="{{ ceten.uri('/categories/' + tag.slug) }}">{{ tag.name }} ({{ tag.products.length }})</a></li>
-    </ul>
-</div>
-
-<div class="body-wrapper">
+<div class="body-wrapper news-wrapper">
     <div class="container-fluid">
-        <div class="row product-list">
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 no-padding" ng-repeat="product in products">
-                <div ng-include="'/partials/product/list.html'"></div>
+        <div class="row news-list">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 no-padding" ng-repeat="n in news">
+                <div class="news">
+                    <div class="news-image"><img data-ng-src="{{ ceten.cdn(n.image) }}" alt=""></div>
+                    <div class="news-info">
+                        <h2>{{ n.title }}</h2>
+                        <p ng-bind-html="n.overview | nl2br"></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

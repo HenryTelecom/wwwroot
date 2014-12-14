@@ -1,0 +1,27 @@
+<div class="body-wrapper">
+    <div class="container-fluid">
+        <div class="row header-row">
+            <div class="col-xs-12 col-sm-6 col-md-8">
+                <h1>Les clubs</h1>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-4 search-engine">
+                <input ng-model="search.name" placeholder="Rechercher">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4 club" ng-repeat="club in clubs | filter:search">
+                <div class="club-logo">
+                    <img ng-src="{{ ceten.cdn(club.logo) }}" ng-if="club.logo">
+                    <img ng-src="{{ ceten.cdn('/assets/images/logo/ceten-icon-100x100.png') }}" ng-if="! club.logo">
+                </div>
+                <div class="club-content">
+                    <h2>{{ club.name }}</h2>
+                    <p>{{ club.description }}</p>
+                    <a href="http://{{ club.website }}" target="_blank" ng-if="club.website">{{ club.website }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

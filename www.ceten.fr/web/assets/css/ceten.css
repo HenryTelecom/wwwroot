@@ -1,0 +1,212 @@
+/******************************
+ * 
+ * www.ceten.fr CSS
+ * 
+ * @author Jonathan ARNAULT
+ * @copyright Cercle des Élèves de TELECOM Nancy <bde@telecomnancy.net>
+ * @license MIT
+ * 
+ *****************************/
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: Tahoma, 'Tahoma', sans-serif;
+}
+
+body {
+    padding-top: 80px;
+    background: #e9e9e9;
+    line-height: 1.5;
+    color: #222222;
+}
+
+a {
+    color: #6c2466;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #451041;
+}
+
+.wrapper {
+    min-height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.wrapper .body-wrapper-fullpage {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.wrapper .body-wrapper {
+    padding-top: 10px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.row .no-padding {
+    padding: 0;
+}
+
+.header-row {
+    padding-bottom: 15px;
+}
+
+.header-row h1 {
+    padding: 0;
+    margin: 0;
+    line-height: 40px;
+    height: 40px;
+    font-size: 1.6em;
+}
+
+.header-row .search-engine input {
+    border: 0;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    width: 100%;
+    outline: 0;
+}
+
+
+/**
+ * Homepage
+ */
+.wrapper .body-wrapper.news-wrapper {
+    padding-top: 0;
+}
+
+.news-list .news {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.news-list .news:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+.news-list .news .news-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.news-list .news .news-image img {
+    width: 100%;
+    height: auto;
+}
+
+.news-list .news .news-info {
+    position: absolute;
+        top: 100%;
+        left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .8);
+    color: #ffffff;
+
+    -webkit-transition: top 0.5s; 
+    transition: top 0.5s;
+}
+
+.news-list .news .news-info h2,
+.news-list .news .news-info p {
+    padding: 10px;
+}
+
+.news-list .news .news-info h2 {
+    font-size: 1.2em;
+    border-bottom: 1px #ffffff solid;
+}
+.news-list .news:hover .news-info {
+    top: 0;
+}
+
+/**
+ * Clubs
+ */
+.club {
+    margin-bottom: 15px;
+    height: 120px;
+}
+
+.club .club-logo {
+    height: 100px;
+    width: 100px;
+    float: left;
+    border: 5px #6c2466 solid;
+    border-radius: 50px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.club .club-logo img {
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+}
+
+.club .club-content {
+    padding-left: 20px;
+    vertical-align: middle;
+    display: table-cell;
+    height: 120px;
+}
+
+.club .club-content h2 {
+    font-size: 1.2em;
+}
+
+.club .club-content h2,
+.club .club-content p {
+    padding-bottom: 5px;
+}
+
+
+/**
+ * Partners
+ */
+.partner {
+    margin-bottom: 15px;
+    height: 100px;
+}
+
+.partner .partner-logo {
+    height: 100px;
+    width: 100px;
+    float: left;
+    border: 5px #6c2466 solid;
+    border-radius: 50px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.partner .partner-logo img {
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+}
+
+.partner .partner-content {
+    padding-left: 20px;
+    vertical-align: middle;
+    display: table-cell;
+    height: 120px;
+}
+
+.partner .partner-content h2 {
+    font-size: 1.2em;
+    padding-bottom: 5px;
+}

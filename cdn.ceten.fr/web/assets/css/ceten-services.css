@@ -3,7 +3,7 @@
  * CETEN services header CSS
  * 
  * @author Jonathan ARNAULT
- * @copyright Cercles des Élèves de TELECOM Nancy <bde@telecomnancy.net>
+ * @copyright Cercle des Élèves de TELECOM Nancy <bde@telecomnancy.net>
  * @license MIT
  * 
  *****************************/

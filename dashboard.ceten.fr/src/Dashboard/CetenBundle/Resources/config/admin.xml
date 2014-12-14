@@ -2,13 +2,61 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
+        <parameter key="admin.ceten.club.class">Dashboard\CetenBundle\Admin\ClubAdmin</parameter>
+        <parameter key="admin.ceten.club_referent.class">Dashboard\CetenBundle\Admin\ClubReferentAdmin</parameter>
         <parameter key="admin.ceten.member.class">Dashboard\CetenBundle\Admin\MemberAdmin</parameter>
+        <parameter key="admin.ceten.partner.class">Dashboard\CetenBundle\Admin\PartnerAdmin</parameter>
+        <parameter key="admin.ceten.news.class">Dashboard\CetenBundle\Admin\NewsAdmin</parameter>
     </parameters>
     <services>
+        <service id="admin.ceten.club" class="%admin.ceten.club.class%">
+            <tag name="sonata.admin" manager_type="orm" group="Ceten" label="Clubs" />
+            <argument />
+            <argument>Ceten\CetenBundle\Entity\Club</argument>
+            <argument />
+            
+            <call method="setTranslationDomain">
+                <argument>CetenCetenBundle</argument>
+            </call>
+        </service>
+
+        <service id="admin.ceten.club_referent" class="%admin.ceten.club_referent.class%">
+            <tag name="sonata.admin" manager_type="orm" group="Ceten" label="Club referents" />
+            <argument />
+            <argument>Ceten\CetenBundle\Entity\ClubReferent</argument>
+            <argument />
+            
+            <call method="setTranslationDomain">
+                <argument>CetenCetenBundle</argument>
+            </call>
+        </service>
+
         <service id="admin.ceten.member" class="%admin.ceten.member.class%">
             <tag name="sonata.admin" manager_type="orm" group="Ceten" label="Members" />
             <argument />
             <argument>Ceten\CetenBundle\Entity\Member</argument>
+            <argument />
+            
+            <call method="setTranslationDomain">
+                <argument>CetenCetenBundle</argument>
+            </call>
+        </service>
+
+        <service id="admin.ceten.partner" class="%admin.ceten.partner.class%">
+            <tag name="sonata.admin" manager_type="orm" group="Ceten" label="Partners" />
+            <argument />
+            <argument>Ceten\CetenBundle\Entity\Partner</argument>
+            <argument />
+            
+            <call method="setTranslationDomain">
+                <argument>CetenCetenBundle</argument>
+            </call>
+        </service>
+
+        <service id="admin.ceten.news" class="%admin.ceten.news.class%">
+            <tag name="sonata.admin" manager_type="orm" group="Ceten" label="News" />
+            <argument />
+            <argument>Ceten\CetenBundle\Entity\News</argument>
             <argument />
             
             <call method="setTranslationDomain">

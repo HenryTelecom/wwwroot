@@ -94,3 +94,4 @@ stof_doctrine_extensions:
         default: 
             sortable: true 
             sluggable: true 
+            timestampable: true

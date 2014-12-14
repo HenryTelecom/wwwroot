@@ -4,17 +4,17 @@
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <title ng:bind-template="{{ '{{ title }}' }} | Cercle des Élèves de TELECOM Nancy"> Cercles des Élèves de TELECOM Nancy</title>
+        <title ng:bind-template="{{ '{{ title }}' }} | Cercle des Élèves de TELECOM Nancy"> Cercle des Élèves de TELECOM Nancy</title>
 
         <link rel="icon" type="image/x-icon" href="{{ cdn('/assets/images/logo/ceten-icon-30x30.png') }}">
-
+        
         <link rel="stylesheet" href="{{ cdn('/assets/css/reset.css') }}">
         <link rel="stylesheet" href="{{ cdn('/assets/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ cdn('/assets/css/ceten-services.css') }}">
         <link rel="stylesheet" href="{{ cdn('/assets/bower_components/ngDialog/css/ngDialog.min.css') }}">
         <link rel="stylesheet" href="/assets/css/popin.css">
         <link rel="stylesheet" href="/assets/css/nav.css">
-        <link rel="stylesheet" href="/assets/css/shop.css">
+        <link rel="stylesheet" href="/assets/css/ceten.css">
 
 
         <script src="{{ cdn('/assets/js/jquery.min.js') }}"></script>
@@ -32,7 +32,7 @@
             };
         </script>
         <script src="/assets/js/ceten.js"></script>
-        <script src="/assets/js/shop.js"></script>
+        <script src="/assets/js/app.js"></script>
         <script src="/assets/js/controllers.js"></script>
     </head>
     <body>
@@ -51,7 +51,7 @@
                             <ul class="nav navbar-nav">
                                 <li class="dropdown">
                                     <a href="{{ path('homepage') }}" class="dropdown-toggle navbar-brand" data-toggle="dropdown">
-                                        <img src="{{ cdn('/assets/images/logo/ceten-uni-78x30.png') }}" alt="" title="Cercles des Élèves de TELECOM Nancy" class="ceten-network-icon" >
+                                        <img src="{{ cdn('/assets/images/logo/ceten-uni-78x30.png') }}" alt="" title="Cercle des Élèves de TELECOM Nancy" class="ceten-network-icon" >
                                     </a>
                                 </li>
                             </ul>
@@ -60,6 +60,8 @@
                         <div class="collapse navbar-collapse" id="ceten-nav-collapse">
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="{{ path('homepage') }}">Accueil</a></li>
+                                <li><a href="{{ path('club_list') }}">Les clubs</a></li>
+                                <li><a href="{{ path('partner_list') }}">Nos partenaires</a></li>
                             </ul>
                         </div>
                     </div>

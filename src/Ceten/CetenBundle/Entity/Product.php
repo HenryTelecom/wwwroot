@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class Product
 {
 
-    const CDN_DIR = '/cdn.ceten.fr';
+    const CDN_DIR = '/cdn.ceten.fr/web';
     const IMAGE_PATH = '/uploads/shop/products';
 
     /**
