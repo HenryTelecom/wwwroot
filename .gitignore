@@ -1,4 +1,4 @@
-/cdn.ceten.fr/uploads/*
+/cdn.ceten.fr/web/uploads/*
 /cdn.ceten.fr/assets/bower_components/
 /boutique.ceten.fr/web/bundles/
 /boutique.ceten.fr/app/bootstrap.php.cache
