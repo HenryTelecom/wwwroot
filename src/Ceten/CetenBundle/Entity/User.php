@@ -27,6 +27,7 @@ class User implements AdvancedUserInterface
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $username;
 
@@ -48,6 +49,7 @@ class User implements AdvancedUserInterface
      * @var array
      *
      * @ORM\Column(name="roles", type="simple_array")
+     * @Assert\NotBlank()
      */
     private $roles;
 

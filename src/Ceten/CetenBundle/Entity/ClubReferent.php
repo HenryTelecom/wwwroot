@@ -3,6 +3,9 @@
 namespace Ceten\CetenBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * ClubReferent
@@ -25,6 +28,7 @@ class ClubReferent
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=50)
+     * @Assert\NotBlank()
      */
     private $firstname;
 
@@ -32,6 +36,7 @@ class ClubReferent
      * @var string
      *
      * @ORM\Column(name="lastname", type="string", length=250)
+     * @Assert\NotBlank()
      */
     private $lastname;
 

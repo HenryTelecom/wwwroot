@@ -31,6 +31,8 @@ class ProductOrder
      * @var integer
      *
      * @ORM\Column(name="count", type="integer")
+     * @Assert\NotBlank()
+     * @Assert\Type(type="integer")
      * @Serializer\Groups({ "order_detail" })
      */
     private $count;
@@ -41,6 +43,7 @@ class ProductOrder
      * 
      * @ORM\ManyToOne(targetEntity="Ceten\CetenBundle\Entity\Product", fetch="EAGER")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      * @Serializer\Groups({ "order_detail" })
      */
     private $product;

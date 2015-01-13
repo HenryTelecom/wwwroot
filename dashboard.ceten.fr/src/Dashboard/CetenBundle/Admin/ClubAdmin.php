@@ -41,6 +41,7 @@ class ClubAdmin extends Admin
             ->add('description', 'textarea', array('label' => 'Description'))
             ->add('imageFile', 'file', $fileFieldOptions)
             ->add('website', null, array('label' => 'Website', 'required' => false))
+            ->add('referent', 'sonata_type_model_list', array('label' => 'Referent'))
         ;
     }
 
@@ -50,6 +51,7 @@ class ClubAdmin extends Admin
         $datagridMapper
             ->add('name', null, array('label' => 'Name'))
             ->add('type', 'doctrine_orm_choice', array('label' => 'Type'), 'choice', array('choices' => self::getTypeChoices()))
+            ->add('referent', null, array('label' => 'Referent'))
         ;
     }
 
@@ -59,6 +61,7 @@ class ClubAdmin extends Admin
         $listMapper
             ->add('name', null, array('label' => 'Name'))
             ->add('type', 'choice', array('label' => 'Type', 'choices' => self::getTypeChoices()))
+            ->add('referent', 'doctrine_orm_class')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),

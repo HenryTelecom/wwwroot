@@ -35,6 +35,7 @@ class Partner
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=100)
+     * @Assert\NotBlank()
      * @Serializer\Groups({ "partner_list" })
      */
     private $name;

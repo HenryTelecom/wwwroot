@@ -42,6 +42,7 @@ class Member
      * @var integer
      *
      * @ORM\Column(name="year", type="integer")
+     * @Assert\NotBlank()
      * @Assert\Choice(choices = {1, 2, 3, 4})
      */
     private $year;
@@ -50,6 +51,7 @@ class Member
      * @var integer
      *
      * @ORM\Column(name="payment", type="integer")
+     * @Assert\NotBlank()
      * @Assert\Choice(choices = {0, 1, 2, 3, 4, 5, 6})
      */
     private $payment;

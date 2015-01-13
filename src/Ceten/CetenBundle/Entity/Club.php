@@ -35,6 +35,7 @@ class Club
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=100)
+     * @Assert\NotBlank()
      * @Serializer\Groups({ "club_list", "club_detail" })
      */
     private $name;
@@ -52,6 +53,7 @@ class Club
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255)
+     * @Assert\NotBlank()
      * @Serializer\Groups({ "club_list", "club_detail" })
      */
     private $description;
@@ -68,9 +70,20 @@ class Club
      * @var integer
      *
      * @ORM\Column(name="type", type="integer")
+     * @Assert\NotBlank()
+     * @Assert\Choice(choices = {0, 1, 2})
      * @Serializer\Groups({ "club_detail" })
      */
     private $type;
+
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="Ceten\CetenBundle\Entity\ClubReferent", fetch="EAGER")
+     * @Assert\NotBlank()
+     * @Serializer\Exclude()
+     */
+    private $referent;
 
     /**
      * @var string
@@ -197,6 +210,29 @@ class Club
     public function getType()
     {
         return $this->type;
+    }
+    
+    /**
+     * Set referent
+     *
+     * @param \Ceten\CetenBundle\Entity\ClubReferent $referent
+     * @return Club
+     */
+    public function setReferent(\Ceten\CetenBundle\Entity\ClubReferent $referent = null)
+    {
+        $this->referent = $referent;
+
+        return $this;
+    }
+
+    /**
+     * Get referent
+     *
+     * @return \Ceten\CetenBundle\Entity\ClubReferent 
+     */
+    public function getReferent()
+    {
+        return $this->referent;
     }
 
     /**
@@ -356,4 +392,5 @@ class Club
     {
         return $this->name;
     }
+
 }

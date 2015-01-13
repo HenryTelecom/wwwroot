@@ -34,12 +34,15 @@ class ShopOrder
      *
      * @ORM\ManyToOne(targetEntity="Ceten\CetenBundle\Entity\User", fetch="EAGER")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      * @Serializer\Exclude()
      */
     private $user;
 
     /**
      * @ORM\OneToMany(targetEntity="Ceten\CetenBundle\Entity\ProductOrder", mappedBy="order", cascade={"persist"}, fetch="EAGER")
+     * @Assert\NotBlank()
+     * @Assert\Count(min=1)
      * @Serializer\Groups({ "order_detail" })
      */
     private $orders;
@@ -49,6 +52,8 @@ class ShopOrder
      * { 0: Not paid yet, 1: Credit card, 2: Cash, 3: Check, 4: Wire transfer }
      *
      * @ORM\Column(name="payment", type="integer", options={"default" = 0})
+     * @Assert\NotBlank()
+     * @Assert\Choice(choices = {0, 1, 2, 3, 4})
      * @Serializer\Groups({ "order_list" })
      */
     private $payment = 0;
@@ -58,6 +63,8 @@ class ShopOrder
      * { 0: order waiting for , 1: withdraw possible, 2: withdrawn, 3: sent }
      *
      * @ORM\Column(name="state", type="integer", options={"default" = 0})
+     * @Assert\NotBlank()
+     * @Assert\Choice(choices = {0, 1, 2, 3})
      * @Serializer\Groups({ "order_list" })
      */
     private $state = 0;
@@ -74,6 +81,8 @@ class ShopOrder
      * @var float
      *
      * @ORM\Column(name="total", type="float")
+     * @Assert\NotBlank()
+     * @Assert\Type(type="float")
      * @Serializer\Groups({ "order_list" })
      */
     private $total;

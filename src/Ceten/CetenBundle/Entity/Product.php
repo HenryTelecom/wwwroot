@@ -66,7 +66,6 @@ class Product
      *
      * @ORM\Column(name="price", type="float")
      * @Assert\NotBlank()
-     * @Assert\Type(type="float")
      * @Serializer\Groups({ "order_detail", "tag_detail", "product_list", "product_detail" })
      */
     private $price;
@@ -76,7 +75,6 @@ class Product
      *
      * @ORM\Column(name="cetenPrice", type="float")
      * @Assert\NotBlank()
-     * @Assert\Type(type="float")
      * @Serializer\Groups({ "order_detail", "tag_detail", "product_list", "product_detail" })
      */
     private $cetenPrice;

@@ -37,6 +37,7 @@ class News
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=100)
+     * @Assert\NotBlank()
      * @Serializer\Groups({ "news_list" })
      */
     private $title;
@@ -63,6 +64,7 @@ class News
      * @var string
      *
      * @ORM\Column(name="overview", type="string", length=255)
+     * @Assert\NotBlank()
      * @Serializer\Groups({ "news_list" })
      */
     private $overview;
